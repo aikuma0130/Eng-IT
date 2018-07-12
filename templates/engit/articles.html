@@ -42,7 +42,7 @@
                     </div>
                     <div class="modal-body">
                       <p>
-                        {{ article.body }}
+                        {{ article.body | safe }}
                       </p>
                     </div>
                     <div class="modal-footer">
@@ -52,7 +52,7 @@
                 </div>
               </div>
               <hr>
-              <p class="card-text">{{ article.body | truncatechars:max_chars_body }}</p>
+              <p class="card-text">{{ article.body | truncatechars_html:max_chars_body | safe }}</p>
             </div>
           </div>
         </div>
