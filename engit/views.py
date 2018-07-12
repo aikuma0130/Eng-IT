@@ -8,6 +8,7 @@ from .models import Article
 import urllib.request
 import requests
 import os
+import re
 from bs4 import BeautifulSoup
 from datetime import datetime, timezone, timedelta
 from google.cloud import texttospeech
@@ -98,10 +99,13 @@ def collects(request):
             print("Error: Temporary Audio File {} not found".format(tmp_output_audio))
 
         # Update File for production
+
+        # remove img tag
+        regex_img = r"<img .*?/>"
         
         # Add record to Model 
         record = Article(title = str(article['title']),
-                    body = str(body_html),
+                    body = re.sub(regex_img, "", str(body_html)),
                     author = str(article['author']),
                     published_at = datetime.strptime(article['publishedAt'], '%Y-%m-%dT%H:%M:%SZ'),
                     source_url = str(article['url']),
