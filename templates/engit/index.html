@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}Eng-IT{% endblock page_title %}
+
+{% block logo_link %}{% url 'engit:article_list_pagenated' page=1 %}{% endblock logo_link %}
+
+{% block content %}
+
+<!-- Masthead -->
+<header class="masthead bg-white text-white text-center">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <a class="navbar-brand ml-3 mb-3" href="{% url 'engit:article_list_pagenated' page=1 %}"><img src="{% static 'images/logo.png' %}"></a>
+        <h3 class="mb-5">英語とITを学べ</h4>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <form>
+          <div class="form-row">
+            <div class="col-12 col-md-5 mx-auto">
+              <button type="submit" formmethod="get" formaction="{% url 'engit:article_list_pagenated' page=1 %}" class="btn btn-block btn-lg btn-primary">Eng-ITを使ってみる</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+      
+<!-- Icons Grid -->
+<section class="features-icons bg-light text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="icon-screen-desktop m-auto text-primary"></i>
+          </div>
+          <h3>Fllow The Trends</h3>
+          <p class="lead mb-0">最新テクノロジーのトレンド情報を収集できます。</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="icon-globe m-auto text-primary"></i>
+          </div>
+          <h3>Be Global</h3>
+          <p class="lead mb-0">英語リスニングを通じて英語力が向上します。</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+          <div class="features-icons-icon d-flex">
+            <i class="icon-refresh m-auto text-primary"></i>
+          </div>
+          <h3>Learn English and IT</h3>
+          <p class="lead mb-0">現代社会において必要なスキルとなった英語とITを同時に習得します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Image Showcases -->
+<section class="showcase">
+  <div class="container-fluid p-0">
+    <div class="row no-gutters">
+      <div class="col-lg-6 order-lg-2 text-white showcase-img showcase-style" style="background-image: url({% static 'engit/images/technology.jpg' %});"></div>
+      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+        <h2>Follow The Latest Tech Trends</h2>
+        <p class="lead mb-0">最新テクノロジーのトレンドは日々変化しています。変化に追従するためにも情報収集は欠かせません。Eng-ITでは海外テックメディアを中心に最新テクノロジーのトレンドを追従します。</p>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-lg-6 text-white showcase-img showcase-style" style="background-image: url({% static 'engit/images/english.jpg' %});"></div>
+      <div class="col-lg-6 my-auto showcase-text">
+        <h2>Be Global</h2>
+        <p class="lead mb-0">これからの現代社会において、英語はエンジニアの必要不可欠なスキルです。特に英語を聞き取れることは他のエンジニアを出し抜くチャンスになります。Eng-ITではテクノロジーに特化した話題で英語のリスニング力を磨くことが出来ます。</p>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-lg-6 order-lg-2 text-white showcase-img showcase-style" style="background-image: url({% static 'engit/images/synergy.jpg' %});"></div>
+      <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+        <h2>Learn English and IT</h2>
+        <p class="lead mb-0">英語とITを学べ。<br/>それがEng-ITのスローガンです。英語とITを同時に学ぶことでこれから目指すべきエンジニアの第一歩を支援します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="call-to-action text-white text-center">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h2 class="mb-4">今すぐEng-ITを始める</h2>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <form>
+          <div class="form-row">
+            <!--
+            <div class="col-12 col-md-9 mb-2 mb-md-0">
+              <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
+            </div>
+            -->
+            <div class="col-12 col-md-5 mx-auto">
+              <button type="submit" formmethod="get" formaction="{% url 'engit:article_list_pagenated' page=1 %}" class="btn btn-block btn-lg btn-primary">Eng-ITを使ってみる</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

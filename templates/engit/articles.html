@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}Eng-IT{% endblock page_title %}
+
+{% block logo_link %}{% url 'engit:article_list_pagenated' page=1 %}{% endblock logo_link %}
+
+{% block navigation %}
+<form class="form-inline" action="{% url 'engit:article_list_pagenated' 1 %}" method="get">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{ keywords|join:' ' |default:'' }}">
+  <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+</form>
+{% endblock navigation %}
+
+{% block content %}
+
+<!-- Icons Grid -->
+<section class="bg-white">
+  <div class="container mt-5">
+    <div id="content">
+      <div class="article row">
+{% for article in articles %}
+        <div class="col-lg-4">
+          <div class="card mb-5">
+            <div class="card-body">
+              <h4 class="card-title"><a class="card-link" href="" data-toggle="modal" data-target="#Modal{{ article.id }}">{{ article.title }}</a></h4>
+              
+              <!-- Modal -->
+              <div id="Modal{{ article.id }}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+              
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">{{ article.title }}</h4>
+                      <!--
+                      <form action="">
+                        <button type="button" class="btn btn-info">Play</button>
+                      </form>
+                      -->
+                      <audio src="{{ article.audio_url }}" controls preload="none"></audio>
+                    </div>
+                    <div class="modal-body">
+                      <p>
+                        {{ article.body }}
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <p class="card-text">{{ article.body | truncatechars:max_chars_body }}</p>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+      </div>
+    </div>
+    <div class="scroller-status">
+        <div class="infinite-scroll-request loader-ellips">
+            ...
+        </div>
+        <!--
+        <p class="infinite-scroll-last">End of content</p>
+        <p class="infinite-scroll-error">No more pages to load</p>
+        -->
+    </div>
+    <div class="pagenation">
+        <a class="pagination__next" href="{% url 'engit:article_list_pagenated' page=next_page %}?keyword={{ keywords|join:'+' }}"></a>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+<script>
+  $(function(){
+      $('#content').infiniteScroll({
+          path: '.pagination__next',
+          append: '.article',
+          status: '.scroller-status',
+          hideNav: '.pagenation',
+      });
+  });
+</script>
+<script>
+  function pause() {
+    $('.modal').on('hide.bs.modal', function () {
+      $('audio').each(function() {
+        this.pause();
+        //this.currentTime = 0;
+      })
+    })
+  };
+
+  $(function(){
+    pause()
+    $('#content').on('DOMSubtreeModified propertychange', function() {
+      pause()
+    })
+  });
+
+</script>
+{% endblock extra_js %}

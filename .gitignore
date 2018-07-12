@@ -1,0 +1,15 @@
+.vscode
+.venv
+.tmp/*
+!.gitkeep
+
+__pycache__
+*.pyc
+
+config/settings/local.py
+requirements/local.txt
+static/engit/audio/*
+!.gitkeep
+static/engit/time_file
+
+db.sqlite3
