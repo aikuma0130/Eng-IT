@@ -38,9 +38,11 @@
                         <button type="button" class="btn btn-info">Play</button>
                       </form>
                       -->
-                      <audio src="{{ article.audio_url }}" controls preload="none"></audio>
                     </div>
                     <div class="modal-body">
+                      <p>
+                        <audio src="{{ article.audio_url }}" controls preload="none"></audio>
+                      </p>
                       <p>
                         {{ article.body | safe }}
                       </p>
