@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views import View
 from django.http import Http404
 from django.conf import settings
@@ -150,3 +151,7 @@ class ArticleListView(View):
 
 
 article_list = ArticleListView.as_view()
+
+
+def view404(request, exception):
+    return redirect('/')

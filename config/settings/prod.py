@@ -1,5 +1,7 @@
 from .base import *
 
+DEBUG = False
+
 DATABASES_DEFAULT_NAME = os.getenv("DATABASES_DEFAULT_NAME", "sample")
 DATABASES_DEFAULT_HOST = os.getenv("DATABASES_DEFAULT_HOST", "mysql-server")
 DATABASES_DEFAULT_PORT = os.getenv("DATABASES_DEFAULT_PORT", "3306")
